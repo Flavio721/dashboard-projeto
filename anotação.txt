@@ -1,0 +1,14 @@
+Usamos uma biblioteca para construção de gráficos em js
+
+Alinhar o botão de menu com o titulo e os símbolos laterais: Feito
+
+Criar novas páginas (perfil, início e reuniões)
+Perfil: Feito
+Inicio: Feito
+Reuniões: Feito
+
+Fazer sistema de cadastro e login
+backend: Feito (tem q testar)
+
+
+Finalizar o projeto

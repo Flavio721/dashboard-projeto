@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* centraliza horizontalmente */
+    align-items: center;     /* centraliza verticalmente */
+}
+
+section {
+    width: 400px;
+    height: 350px;
+    background-color: #cde;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+}

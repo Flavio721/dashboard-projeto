@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.link{
+    text-decoration: none;
+    color: blue;
+    cursor: pointer;
+    padding: 10px;
+}
+.link:hover{
+    color: rgb(106, 106, 240);
+}
+
+.topo{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 15;
+    grid-row: 1;
+    padding: 20px;
+}
+.nav{
+    padding: 10px;
+    margin-left: 10px;
+    grid-column: 1 / 2;
+}
+.item1{
+    grid-column: 7 / 8;
+    padding: 15px;
+}
+.item2{
+        grid-column: 13 / 15;
+    padding: 10px;
+}
+.container{
+    padding: 50px;
+    margin: auto;
+}
+.est{
+    display: grid;
+    grid-template-columns: 15;
+    grid-template-rows: 1;
+    width: 100%;
+}
+.card{
+    border: 1px solid black;
+    width: 650px;
+    margin-left: 30px;
+    grid-template-columns: 1 / 6;
+    grid-row: 1;
+}
+#monthlySalesChart {
+  width: 400px !important; /* ou qualquer tamanho */
+  height: 300px !important;
+  margin: auto;
+}
+.item3{
+    width: 300px;
+    grid-template-columns: 12 / 15;
+    grid-row: 1;
+}
