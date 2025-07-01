@@ -149,26 +149,27 @@ include 'processa.php'
       <script>
         // Código para o botão de cancelar reunião
         document.getElementById('formCancelar').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const select = document.getElementById('reuniaoSelect');
+    e.preventDefault(); // Impede o comortamento padrão de atualizar a pagina
+    const select = document.getElementById('reuniaoSelect'); // Pega o select com as opções de reuniões 
     
-    const dataSelecionada = select.value
+    const dataSelecionada = select.value //  Captura o valor selecionado
     const reuniao = select.value;
-
+    // Verifica se uma reunião foi selecionada
     if (dataSelecionada) {
       // Encontra o elemento da reunião com o atributo data-reuniao correspondente
       const itemReuniao = document.querySelector('[data-reuniao="' + dataSelecionada + '"]');
-
+      // Envia a requisição para o servidor para deletar a reunião
     fetch('deletar_reuniao.php', {
     method: 'POST',
     headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded' // Indica que estamos enviando valores do formulário
     },
-    body: 'dia=' + encodeURIComponent(dataSelecionada)
+    body: 'dia=' + encodeURIComponent(dataSelecionada) // Envia a data como parâmetro 
     })
-    .then(response => response.text())
+    .then(response => response.text()) //Recebe a resposta como texto
     .then(resposta => {
     if (resposta.trim() === 'sucesso') {
+      // Remove o item da tela se o banco confirmar o cancelamento
         if (itemReuniao) {
         itemReuniao.remove(); // Agora sim, só após o banco confirmar
         }
@@ -262,32 +263,32 @@ include 'processa.php'
 });
 
     // Código para botão de marcar como concluida
-    document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.btn-concluir').forEach(botao => {
-    botao.addEventListener('click', function() {
-      const divReuniao = this.closest('[data-reuniao]');
-      if (!divReuniao) return alert('Erro: reunião não identificada.');
+      document.addEventListener('DOMContentLoaded', () => { //Aguarda o carregamento completo do DOM
+    document.querySelectorAll('.btn-concluir').forEach(botao => { //Seleciona todos botões de concluido 
+      botao.addEventListener('click', function() { // Cria um evento de click para cada um
+        const divReuniao = this.closest('[data-reuniao]'); // Encontra o elemento pai da reunião (árvore DOM)
+        if (!divReuniao) return alert('Erro: reunião não identificada.'); 
 
-      const dia = divReuniao.getAttribute('data-reuniao');
-
-      fetch('deletar_reuniao.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'dia=' + encodeURIComponent(dia)
-      })
-      .then(response => response.text())
-      .then(resposta => {
-        if (resposta.trim() === 'sucesso') {
-          divReuniao.remove();
-          alert('Reunião do dia ' + dia.split('-').reverse().join('/') + ' marcada como concluída e removida.');
-        } else {
-          alert('Erro ao concluir reunião: ' + resposta);
-        }
-      })
-      .catch(() => alert('Erro na comunicação com o servidor.'));
+        const dia = divReuniao.getAttribute('data-reuniao'); //Pega o valor do atributo data-reuniao
+        // Envia a requisição para o PHP remover o item do database
+        fetch('deletar_reuniao.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, // Formato de formulário tradicional
+          body: 'dia=' + encodeURIComponent(dia) // Codifica a data no corpo da requisição
+        })
+        .then(response => response.text()) // Converte a data para string
+        .then(resposta => {
+          if (resposta.trim() === 'sucesso') {
+            divReuniao.remove(); // Remove a reunião da tela
+            alert('Reunião do dia ' + dia.split('-').reverse().join('/') + ' marcada como concluída e removida.');
+          } else {
+            alert('Erro ao concluir reunião: ' + resposta);
+          }
+        })
+        .catch(() => alert('Erro na comunicação com o servidor.'));
+      });
     });
   });
-});
 
       </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
