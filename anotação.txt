@@ -8,7 +8,8 @@ Inicio: Feito
 Reuniões: Feito
 
 Fazer sistema de cadastro e login
-backend: Feito (tem q testar)
+backend: Feito
 
 
 Finalizar o projeto
+Projeto pronto
